@@ -16,6 +16,7 @@ import (
 	"mime"
 	"mime/multipart"
 	"mime/quotedprintable"
+	"net"
 	"net/mail"
 	"net/smtp"
 	"net/textproto"
@@ -506,7 +507,7 @@ func (e *Email) SendWithTLS(addr string, a smtp.Auth, t *tls.Config) error {
 		return err
 	}
 
-	conn, err := tls.Dial("tcp", addr, t)
+	conn, err := net.Dial("tcp", addr)
 	if err != nil {
 		return err
 	}
